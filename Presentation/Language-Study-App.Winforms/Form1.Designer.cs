@@ -1,4 +1,4 @@
-﻿namespace Language_Study_App
+﻿namespace Language_Study_App.Winforms
 {
     partial class Form1
     {

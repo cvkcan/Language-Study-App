@@ -1,0 +1,6 @@
+{
+  "ConnectionStrings": {
+    "SqlServer":
+      "Server=CAN\\SQLEXPRESS; Database=ECommerceDb; User Id=sa; Password=Windowserver19*; TrustServerCertificate=True"
+  }
+}

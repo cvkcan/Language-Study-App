@@ -11,6 +11,10 @@ namespace Language_Study_App.Persistence.Contexts
 {
     public class LanguageStudyAppDb:DbContext
     {
+        public LanguageStudyAppDb(DbContextOptions options) : base(options)
+        {
+        }
+
         public DbSet<PV> PVs { get; set; }
         public DbSet<Translate> Translates { get; set; }
         public DbSet<Word> Words { get; set; }

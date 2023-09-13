@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Identity.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,14 +8,15 @@ using System.Threading.Tasks;
 
 namespace Language_Study_App.Persistence.Configurations
 {
-    static class Configuration
+    public static class Configuration
     {
-        static public string ConnectionString
+        public static  string ConnectionString
         {
             get 
             {
+                string jsonPath = @"C:\\Users\\CAN\\source\\repos\\Language-Study-App\\Infrastructure\\Language-Study-App.Persistence\\";
                 ConfigurationManager configurationManager = new();
-                configurationManager.SetBasePath(Directory.GetCurrentDirectory());
+                configurationManager.SetBasePath(jsonPath);
                 configurationManager.AddJsonFile("json1.json");
                 return configurationManager.GetConnectionString("SqlServer");
             }

@@ -1,17 +1,33 @@
-namespace Language_Study_App.Winforms
+﻿using Language_Study_App.Application.Repositories;
+using Language_Study_App.Persistence.Contexts;
+using Language_Study_App.Persistence.Repositories;
+using Language_Study_App.Winforms;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+
+static class Program
 {
-    internal static class Program
+    [STAThread]
+    static void Main()
     {
-        /// <summary>
-        ///  The main entry point for the application.
-        /// </summary>
-        [STAThread]
-        static void Main()
-        {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
-            ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
-        }
+        System.Windows.Forms.Application.SetHighDpiMode(HighDpiMode.SystemAware);
+        System.Windows.Forms.Application.EnableVisualStyles();
+        System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
+
+        var host = CreateHostBuilder().Build();
+        ServiceProvider = host.Services;
+
+        System.Windows.Forms.Application.Run(ServiceProvider.GetRequiredService<Form1>());
+    }
+    public static IServiceProvider ServiceProvider { get; private set; }
+    static IHostBuilder CreateHostBuilder()
+    {
+        return Host.CreateDefaultBuilder()
+            .ConfigureServices((context, services) => {
+                services.AddDbContext<LanguageStudyAppDb>(o => o.UseSqlServer(Language_Study_App.Persistence.Configurations.Configuration.ConnectionString));
+                services.AddScoped<IWordWriteRepository,WordWriteRepository>();
+                services.AddScoped<Form1>();
+            });
     }
 }

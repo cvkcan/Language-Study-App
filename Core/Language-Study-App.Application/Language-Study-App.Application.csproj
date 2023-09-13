@@ -11,4 +11,14 @@
     <ProjectReference Include="..\Language-Study-App.Domain\Language-Study-App.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Repositories\AllEntitie\" />
+    <Folder Include="Repositories\Translate\" />
+    <Folder Include="Repositories\PV\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.10" />
+  </ItemGroup>
+
 </Project>

@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Language_Study_App.Persistence.Repositories
 {
-    public class WordReadRepository : ReadRepository<Word>, IWordReadRepository
+    public class AllEntitieWriteRepository : WriteRepository<AllEntitie>, IAllEntiteWriteRepository
     {
-        public WordReadRepository(LanguageStudyAppDb context) : base(context)
+        public AllEntitieWriteRepository(LanguageStudyAppDb context) : base(context)
         {
         }
     }

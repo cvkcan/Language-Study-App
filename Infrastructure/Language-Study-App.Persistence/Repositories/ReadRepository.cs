@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,5 +21,16 @@ namespace Language_Study_App.Persistence.Repositories
         }
 
         public DbSet<T> Table { get => _context.Set<T>(); set => throw new NotImplementedException(); }
+
+        public IQueryable<T> GettAll()
+        {
+            var query = Table.AsQueryable();
+            return query;
+        }
+
+        public IQueryable<T> GetWhere(Expression<Func<T, bool>> method)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Language_Study_App.Application.Repositories;
 using Language_Study_App.Domain.Enums;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,26 +16,18 @@ namespace Language_Study_App.Winforms
     public partial class Form1 : Form
     {
         private readonly IWordWriteRepository _wordWriteRepository;
-        public Form1(IWordWriteRepository wordWriteRepository)
+        private readonly IWordReadRepository _wordReadRepository;
+        public Form1(IWordWriteRepository wordWriteRepository, IWordReadRepository wordReadRepository)
         {
             InitializeComponent();
             _wordWriteRepository = wordWriteRepository;
+            _wordReadRepository = wordReadRepository;
         }
 
 
         private async void button1_Click(object sender, EventArgs e)
         {
-            await _wordWriteRepository.AddAsync(new()
-            {
-                EnglishMean="asda",
-                Sentece="asd",
-                EnglishWord="q1",
-                Id=Guid.NewGuid(),
-                StateType=StateTypes.Success,
-                TurkishMean="rk"
-            });
-            await _wordWriteRepository.SaveChangesAsync();
-            MessageBox.Show("Test");
+           
         }
     }
 }

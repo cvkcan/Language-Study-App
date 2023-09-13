@@ -27,6 +27,7 @@ static class Program
             .ConfigureServices((context, services) => {
                 services.AddDbContext<LanguageStudyAppDb>(o => o.UseSqlServer(Language_Study_App.Persistence.Configurations.Configuration.ConnectionString));
                 services.AddScoped<IWordWriteRepository,WordWriteRepository>();
+                services.AddScoped<IWordReadRepository ,WordReadRepository>();
                 services.AddScoped<Form1>();
             });
     }

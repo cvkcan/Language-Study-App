@@ -28,5 +28,11 @@ namespace Language_Study_App.Persistence.Repositories
             return entityEntry.State == EntityState.Added;
         }
         public async Task<int> SaveChangesAsync() => await _context.SaveChangesAsync();
+
+        public bool Update(T model)
+        {
+            EntityEntry<T> entityEntry = _context.Update(model);
+            return entityEntry.State == EntityState.Modified;
+        }
     }
 }

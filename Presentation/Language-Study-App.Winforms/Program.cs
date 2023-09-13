@@ -1,4 +1,6 @@
-﻿using Language_Study_App.Application.Repositories;
+﻿using Language_Study_App.Application.Features.Commands;
+using Language_Study_App.Application.Features.Queries;
+using Language_Study_App.Application.Repositories;
 using Language_Study_App.Persistence.Contexts;
 using Language_Study_App.Persistence.Repositories;
 using Language_Study_App.Winforms;
@@ -27,7 +29,19 @@ static class Program
             .ConfigureServices((context, services) => {
                 services.AddDbContext<LanguageStudyAppDb>(o => o.UseSqlServer(Language_Study_App.Persistence.Configurations.Configuration.ConnectionString));
                 services.AddScoped<IWordWriteRepository,WordWriteRepository>();
-                services.AddScoped<IWordReadRepository ,WordReadRepository>();
+                services.AddScoped<IWordReadRepository, WordReadRepository>();
+                services.AddScoped<IAllEntiteWriteRepository,AllEntitieWriteRepository>();
+                services.AddScoped<IAllEntitieReadRepository,AllEntitieReadRepository>();
+                services.AddScoped<ITranslateReadRepository, TranslateReadRepository>();
+                services.AddScoped<ITranslateWriteRepository, TranslateWriteRepository>();
+                services.AddScoped<IPVReadRepository, PVReadRepository>();  
+                services.AddScoped<IPVWriteRepository, PVWriteRepository>();
+                services.AddScoped<AddCommand>();
+                services.AddScoped<UpdateCommand>();
+                services.AddScoped<GetAllQuery>();
+                services.AddScoped<GetByIdQuery>();
+                services.AddScoped<GetByWordQuery>();
+                services.AddScoped<GetByStatusQuery>();
                 services.AddScoped<Form1>();
             });
     }

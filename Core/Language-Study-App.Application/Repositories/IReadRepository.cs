@@ -10,7 +10,8 @@ namespace Language_Study_App.Application.Repositories
 {
     public interface IReadRepository<T>  : IRepository<T> where T : BaseEntitiy
     {
-        IQueryable<T> GettAll();
-        IQueryable<T> GetWhere(Expression<Func<T, bool>> method);
+        IQueryable<T> GettAll(bool tracking = false);
+        IQueryable<T> GetWhere(Expression<Func<T, bool>> method, bool tracking = false);
+        Task<T> GetByIdAsync(string id, bool tracking = true);
     }
 }

@@ -1,4 +1,6 @@
 ﻿using Language_Study_App.Domain.Entities;
+using Language_Study_App.Domain.Entities.Common;
+using Language_Study_App.Domain.Enums;
 using Language_Study_App.Persistence.Configurations;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -22,6 +24,19 @@ namespace Language_Study_App.Persistence.Contexts
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(Configuration.ConnectionString);
+        }
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        {
+            var entities = ChangeTracker.Entries<BaseEntitiy>();
+            foreach (var item in entities)
+            {
+                if (item.State==EntityState.Added)
+                {
+                    item.Entity.StateType = StateTypes.Unsuccess;
+                    item.Entity.Id=Guid.NewGuid();
+                }
+            }
+            return base.SaveChangesAsync(cancellationToken);
         }
     }
 }

@@ -11,6 +11,7 @@ namespace Language_Study_App.Application.Repositories
     public interface IWriteRepository<T> : IRepository<T> where T : BaseEntitiy
     {
         Task<bool> AddAsync(T model);
+        bool Update(T model);
         Task<int> SaveChangesAsync();
     }
 }

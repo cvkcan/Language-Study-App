@@ -1,9 +1,11 @@
 ﻿using Language_Study_App.Application.Features.Queries;
 using Language_Study_App.Application.Repositories;
 using Language_Study_App.Domain.Entities;
+using Language_Study_App.Domain.Entities.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,15 +27,13 @@ namespace Language_Study_App.Application.Features.Commands
             _allEntiteWriteRepository = allEntiteWriteRepository;
             _getByIdQuery = getByIdQuery; //SİLİNECEEEEEEEEEEEEEEEEEEEEEEEEEEEK
         }
-
-        public async Task<bool> UpdateWord(string id,Word word)
+       public async Task<bool> UpdateWord(string id, Word word)
         {
-            Word data = await _getByIdQuery.GetByIdWord(id);
-            data.EnglishMean=word.EnglishMean;
-            data.EnglishWord = word.EnglishWord;
-            data.TurkishMean = word.TurkishMean;
-            data.Sentece = word.Sentece;
-            _wordWriteRepository.Update(data);
+            var product = await _getByIdQuery.GetByIdWord(id);
+            product.TurkishMean = word.TurkishMean;
+            product.EnglishWord = word.EnglishWord;
+            product.EnglishMean= word.EnglishMean;
+            product.Sentece= word.Sentece;
             await _wordWriteRepository.SaveChangesAsync();
             return new();
         }

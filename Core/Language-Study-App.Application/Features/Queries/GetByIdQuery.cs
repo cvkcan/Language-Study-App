@@ -1,8 +1,10 @@
 ﻿using Language_Study_App.Application.Repositories;
 using Language_Study_App.Domain.Entities;
+using Language_Study_App.Domain.Entities.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,11 +18,10 @@ namespace Language_Study_App.Application.Features.Queries
         {
             _wordReadRepository = wordReadRepository;
         }
-
-        public async Task<Word> GetByIdWord(string id)
+        public async Task<Word> GetByIdWord(string id) 
         {
-            var data = await _wordReadRepository.GetByIdAsync(id);
-            return data;
+            var product =await _wordReadRepository.GetByIdAsync(id);
+            return product;
         }
     }
 }

@@ -1,5 +1,7 @@
-﻿using Language_Study_App.Application.Repositories;
+﻿using Language_Study_App.Application.Features.Commands.DI;
+using Language_Study_App.Application.Repositories;
 using Language_Study_App.Domain.Entities;
+using Language_Study_App.Domain.Entities.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,53 +24,52 @@ namespace Language_Study_App.Application.Features.Commands
             _wordWriteRepository = wordWriteRepository;
             _allEntiteWriteRepository = allEntiteWriteRepository;
         }
-
-        public async Task<bool> AddAsyncWord(Word word)
+        public async Task<bool> AddAsync<T>(T entity) where T : BaseEntitiy
         {
-            await _wordWriteRepository.AddAsync(new()
+            if (entity is Word word)
             {
-                EnglishWord = word.EnglishWord,
-                EnglishMean = word.EnglishMean,
-                Sentece = word.Sentece,
-                TurkishMean = word.TurkishMean
-            });
-            await _wordWriteRepository.SaveChangesAsync();
-            return new();
-        }
-        public async Task<bool> AddAsyncTranslate(Translate translate)
-        {
-            await _translateWriteRepository.AddAsync(new()
+                await _wordWriteRepository.AddAsync(new()
+                {
+                    EnglishMean=word.EnglishMean,
+                    EnglishWord = word.EnglishWord,
+                    Sentece = word.Sentece,
+                    TurkishMean = word.TurkishMean
+                });
+                await _wordWriteRepository.SaveChangesAsync();
+            }
+            else if (entity is Translate translate)
             {
-                EnglishTranslate = translate.EnglishTranslate,
-                EnglishMean = translate.EnglishMean,
-                Sentece = translate.Sentece,
-                TurkishMean = translate.TurkishMean
-            });
-            await _translateWriteRepository.SaveChangesAsync();
-            return new();
-        }
-        public async Task<bool> AddAsyncAllEntitie(AllEntitie allEntitie)
-        {
-            await _allEntiteWriteRepository.AddAsync(new()
+                await _translateWriteRepository.AddAsync(new()
+                {
+                    EnglishMean=translate.EnglishMean,
+                    EnglishTranslate = translate.EnglishTranslate,
+                    Sentece = translate.Sentece,
+                    TurkishMean = translate.TurkishMean 
+                });
+                await _translateWriteRepository.SaveChangesAsync();
+            }
+            else if (entity is PV pv)
             {
-                EnglishAllEntite = allEntitie.EnglishAllEntite,
-                EnglishMean = allEntitie.EnglishMean,
-                Sentece = allEntitie.Sentece,
-                TurkishMean = allEntitie.TurkishMean
-            });
-            await _allEntiteWriteRepository.SaveChangesAsync();
-            return new();
-        }
-        public async Task<bool> AddAsyncPV(PV pV)
-        {
-            await _pvWriteRepository.AddAsync(new()
+                await _pvWriteRepository.AddAsync(new()
+                {
+                    EnglishMean=pv.EnglishMean,
+                    EnglishPV = pv.EnglishPV,
+                    Sentece=pv.Sentece,
+                    TurkishMean = pv.TurkishMean
+                });
+                await _pvWriteRepository.SaveChangesAsync();
+            }
+            else if (entity is AllEntitie allEntitie)
             {
-                EnglishPV = pV.EnglishPV,
-                EnglishMean = pV.EnglishMean,
-                Sentece = pV.Sentece,
-                TurkishMean = pV.TurkishMean
-            });
-            await _pvWriteRepository.SaveChangesAsync();
+                await _allEntiteWriteRepository.AddAsync(new()
+                {
+                    EnglishAllEntite=allEntitie.EnglishAllEntite,
+                    EnglishMean = allEntitie.EnglishMean,
+                    Sentece=allEntitie.Sentece,
+                    TurkishMean = allEntitie.TurkishMean
+                });
+                await _allEntiteWriteRepository.SaveChangesAsync();
+            }
             return new();
         }
     }

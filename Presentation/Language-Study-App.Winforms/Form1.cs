@@ -32,6 +32,7 @@ namespace Language_Study_App.Winforms
 
         private async void button1_Click(object sender, EventArgs e)
         {
+            #region MyRegion
             //var word = new Word
             //{
             //    EnglishWord = textBox1.Text,
@@ -41,15 +42,42 @@ namespace Language_Study_App.Winforms
             //};
             //await _addCommand.AddAsyncWord(word);
             //MessageBox.Show("Test");
+            #endregion
 
-
-
-
+            #region MyRegion
             //var data = await _getByIdQuery.GetByIdWord("FADE2D44-4746-4AA4-ABBE-C5C95517E2D2");
             //MessageBox.Show(data.EnglishWord);
 
+            #endregion
 
 
+            #region MyRegion
+            //var word = new Word
+            //{
+            //    EnglishWord = textBox1.Text,
+            //    EnglishMean = textBox2.Text,
+            //    Sentece = textBox3.Text,
+            //    TurkishMean = textBox4.Text
+            //};
+            //await _updateCommand.UpdateWord("FADE2D44-4746-4AA4-ABBE-C5C95517E2D2", word);
+            //MessageBox.Show("Test");
+            #endregion
+
+
+
+
+            //var word = new Word
+            //{
+            //    EnglishWord = textBox1.Text,
+            //    EnglishMean = textBox2.Text,
+            //    Sentece = textBox3.Text,
+            //    TurkishMean = textBox4.Text
+            //};
+            //await _addCommand.AddAsync(word);
+            //MessageBox.Show("Test");
+
+            //var dat = await _getByIdQuery.GetByIdW("FADE2D44-4746-4AA4-ABBE-C5C95517E2D2");
+            //MessageBox.Show(dat);
 
 
             var word = new Word
@@ -59,8 +87,8 @@ namespace Language_Study_App.Winforms
                 Sentece = textBox3.Text,
                 TurkishMean = textBox4.Text
             };
-            await _updateCommand.UpdateWord("FADE2D44-4746-4AA4-ABBE-C5C95517E2D2", word);
-            MessageBox.Show("Test");
+            await _updateCommand.UpdateWord("6BF1C75F-9AF3-471B-BB78-6C23473AC571",word);
+            MessageBox.Show("Done");
         }
     }
 }

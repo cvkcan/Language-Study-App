@@ -33,7 +33,7 @@ namespace Language_Study_App.Persistence.Contexts
                 if (item.State==EntityState.Added)
                 {
                     item.Entity.StateType = StateTypes.Unsuccess;
-                    item.Entity.Id=Guid.NewGuid();
+                    //item.Entity.Id=Guid.NewGuid();
                 }
             }
             return base.SaveChangesAsync(cancellationToken);

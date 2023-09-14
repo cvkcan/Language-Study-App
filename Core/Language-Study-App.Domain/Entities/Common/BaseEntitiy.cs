@@ -9,7 +9,7 @@ namespace Language_Study_App.Domain.Entities.Common
 {
     public class BaseEntitiy
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public StateTypes StateType { get; set; }
         public string EnglishMean { get; set; }
         public string Sentece { get; set; }

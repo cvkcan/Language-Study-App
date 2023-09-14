@@ -22,12 +22,12 @@ namespace Language_Study_App.Persistence.Repositories
 
         public DbSet<T> Table { get => _context.Set<T>(); set => throw new NotImplementedException(); }
 
-        public async Task<T> GetByIdAsync(string id, bool tracking = true)
+        public async Task<T> GetByIdAsync(int id, bool tracking = true)
         {
-            var query= Table.AsQueryable();
+            var query = Table.AsQueryable();
             if (!tracking)
-                query=query.AsNoTracking();
-            return await query.FirstOrDefaultAsync(d => d.Id == Guid.Parse(id));
+                query = query.AsNoTracking();
+            return await query.FirstOrDefaultAsync(d => d.Id == id);
         }
 
         public IQueryable<T> GettAll(bool tracking = false)

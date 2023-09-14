@@ -21,14 +21,18 @@ namespace Language_Study_App.Winforms
         private readonly AddCommand _addCommand;
         private readonly UpdateCommand _updateCommand;
         private readonly GetByIdQuery _getByIdQuery;
-        public Form1(AddCommand addCommand, UpdateCommand updateCommand, GetByIdQuery getByIdQuery)
+        //public Form1(AddCommand addCommand, UpdateCommand updateCommand, GetByIdQuery getByIdQuery)
+        //{
+        //    InitializeComponent();
+        //    _addCommand = addCommand;
+        //    _updateCommand = updateCommand;
+        //    _getByIdQuery = getByIdQuery;
+        //}
+
+        public Form1()
         {
             InitializeComponent();
-            _addCommand = addCommand;
-            _updateCommand = updateCommand;
-            _getByIdQuery = getByIdQuery;
         }
-
 
         private async void button1_Click(object sender, EventArgs e)
         {

@@ -1,12 +1,11 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace Language_Study_App.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class mig1 : Migration
+    public partial class init1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,7 +14,8 @@ namespace Language_Study_App.Persistence.Migrations
                 name: "AllEntities",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     EnglishAllEntite = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     StateType = table.Column<int>(type: "int", nullable: false),
                     EnglishMean = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -31,7 +31,8 @@ namespace Language_Study_App.Persistence.Migrations
                 name: "PVs",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     EnglishPV = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     StateType = table.Column<int>(type: "int", nullable: false),
                     EnglishMean = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -47,7 +48,8 @@ namespace Language_Study_App.Persistence.Migrations
                 name: "Translates",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     EnglishTranslate = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     StateType = table.Column<int>(type: "int", nullable: false),
                     EnglishMean = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -63,7 +65,8 @@ namespace Language_Study_App.Persistence.Migrations
                 name: "Words",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     EnglishWord = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     StateType = table.Column<int>(type: "int", nullable: false),
                     EnglishMean = table.Column<string>(type: "nvarchar(max)", nullable: false),

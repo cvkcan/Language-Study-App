@@ -18,10 +18,10 @@ namespace Language_Study_App.Application.Features.Queries
         {
             _wordReadRepository = wordReadRepository;
         }
-        public async Task<Word> GetByIdWord(string id) 
+        public async Task<Word> GetById(int id) 
         {
-            var product =await _wordReadRepository.GetByIdAsync(id);
-            return product;
+            var entity = await _wordReadRepository.GetByIdAsync(id);
+            return entity;
         }
     }
 }

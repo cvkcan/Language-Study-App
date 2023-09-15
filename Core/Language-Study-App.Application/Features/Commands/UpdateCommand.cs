@@ -29,9 +29,9 @@ namespace Language_Study_App.Application.Features.Commands
         }
        public async Task<bool> Update<T> (int id, T entity) where T : BaseEntitiy
        {
-            var data = await _getByIdQuery.GetById(id);
             if (entity is Word word)
             {
+                var data = await _getByIdQuery.GetById<Word>(id);
                 data.TurkishMean = word.TurkishMean;
                 data.EnglishMean = word.EnglishMean;
                 data.EnglishWord = word.EnglishWord;
@@ -41,27 +41,30 @@ namespace Language_Study_App.Application.Features.Commands
             }
             else if (entity is Translate translate)
             {
+                var data = await _getByIdQuery.GetById<Translate>(id);
                 data.TurkishMean = translate.TurkishMean;
                 data.EnglishMean = translate.EnglishMean;
-                data.EnglishWord = translate.EnglishTranslate;
+                data.EnglishTranslate = translate.EnglishTranslate;
                 data.StateType = translate.StateType;
                 data.Sentece = translate.Sentece;
                 await _translateWriteRepository.SaveChangesAsync();
             }
             else if (entity is PV pv)
             {
+                var data = await _getByIdQuery.GetById<PV>(id);
                 data.TurkishMean = pv.TurkishMean;
                 data.EnglishMean = pv.EnglishMean;
-                data.EnglishWord = pv.EnglishPV;
+                data.EnglishPV = pv.EnglishPV;
                 data.StateType = pv.StateType;
                 data.Sentece = pv.Sentece;
                 await _pvWriteRepository.SaveChangesAsync();
             }
             else if (entity is AllEntitie allEntitie)
             {
+                var data = await _getByIdQuery.GetById<AllEntitie>(id);
                 data.TurkishMean = allEntitie.TurkishMean;
                 data.EnglishMean = allEntitie.EnglishMean;
-                data.EnglishWord = allEntitie.EnglishAllEntite;
+                data.EnglishAllEntite = allEntitie.EnglishAllEntite;
                 data.StateType = allEntitie.StateType;
                 data.Sentece = allEntitie.Sentece;
                 await _allEntiteWriteRepository.SaveChangesAsync();

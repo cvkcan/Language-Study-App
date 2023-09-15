@@ -4,6 +4,7 @@ using Language_Study_App.Application.Repositories;
 using Language_Study_App.Persistence.Contexts;
 using Language_Study_App.Persistence.Repositories;
 using Language_Study_App.Winforms;
+using Language_Study_App.Winforms.Pages;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,7 +22,7 @@ static class Program
         var host = CreateHostBuilder().Build();
         ServiceProvider = host.Services;
 
-        System.Windows.Forms.Application.Run(ServiceProvider.GetRequiredService<Form1>());
+        System.Windows.Forms.Application.Run(ServiceProvider.GetRequiredService<HomePage>());
     }
     public static IServiceProvider ServiceProvider { get; private set; }
     static IHostBuilder CreateHostBuilder()
@@ -43,7 +44,7 @@ static class Program
                 services.AddScoped<GetByIdQuery>();
                 services.AddScoped<GetByWordQuery>();
                 services.AddScoped<GetByStatusQuery>();
-                services.AddScoped<Form1>();
+                services.AddScoped<HomePage>();
             });
     }
 }

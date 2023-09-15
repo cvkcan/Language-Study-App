@@ -69,7 +69,7 @@ namespace Language_Study_App.Application.Features.Commands
                 });
                 await _allEntiteWriteRepository.SaveChangesAsync();
             }
-            return new();
+            return true;
         }
     }
 }

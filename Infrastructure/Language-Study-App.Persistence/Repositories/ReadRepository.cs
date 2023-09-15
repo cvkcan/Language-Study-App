@@ -1,6 +1,7 @@
 ﻿using Language_Study_App.Application.Repositories;
 using Language_Study_App.Domain.Entities;
 using Language_Study_App.Domain.Entities.Common;
+using Language_Study_App.Domain.Enums;
 using Language_Study_App.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query.Internal;
@@ -65,7 +66,7 @@ namespace Language_Study_App.Persistence.Repositories
             var query= Table.AsQueryable();
             if(!tracking)
                 query = query.AsNoTracking();
-            return query;
+            return query.Where(method);
         }
     }
 }

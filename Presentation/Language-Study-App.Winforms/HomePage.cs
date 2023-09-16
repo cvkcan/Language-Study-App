@@ -18,18 +18,20 @@ namespace Language_Study_App.Winforms
     {
         private readonly AddCommand _addCommand;
         private readonly UpdateCommand _updateCommand;
-        private readonly GetByWordQuery _getByWordQuery;
-        public HomePage(AddCommand addCommand, UpdateCommand updateCommand, GetByWordQuery getByWordQuery)
+        private readonly GetByQuery _getByWordQuery;
+        private readonly GetWhereQuery _getByStatusQuery;
+        public HomePage(AddCommand addCommand, UpdateCommand updateCommand, GetByQuery getByWordQuery, GetWhereQuery getByStatusQuery)
         {
             InitializeComponent();
             _addCommand = addCommand;
             _updateCommand = updateCommand;
             _getByWordQuery = getByWordQuery;
+            _getByStatusQuery = getByStatusQuery;
         }
 
         private void getWordButton_Click(object sender, EventArgs e)
         {
-            GetWordPage getWordPage = new();
+            GetWordPage getWordPage = new(_getByStatusQuery);
             getWordPage.ShowDialog();
         }
 

@@ -42,7 +42,7 @@
             sentenceTextBox = new TextBox();
             statusTypeComboBox = new ComboBox();
             label6 = new Label();
-            searchDataLabel = new Label();
+            searchValueLabel = new Label();
             groupBox1 = new GroupBox();
             searchComboBox = new ComboBox();
             label7 = new Label();
@@ -169,20 +169,20 @@
             label6.TabIndex = 14;
             label6.Text = "Search";
             // 
-            // searchDataLabel
+            // searchValueLabel
             // 
-            searchDataLabel.AutoSize = true;
-            searchDataLabel.Location = new Point(132, 235);
-            searchDataLabel.Name = "searchDataLabel";
-            searchDataLabel.Size = new Size(22, 15);
-            searchDataLabel.TabIndex = 15;
-            searchDataLabel.Text = "---";
+            searchValueLabel.AutoSize = true;
+            searchValueLabel.Location = new Point(121, 242);
+            searchValueLabel.Name = "searchValueLabel";
+            searchValueLabel.Size = new Size(22, 15);
+            searchValueLabel.TabIndex = 15;
+            searchValueLabel.Text = "---";
             // 
             // groupBox1
             // 
             groupBox1.BackColor = Color.IndianRed;
             groupBox1.Controls.Add(searchComboBox);
-            groupBox1.Controls.Add(searchDataLabel);
+            groupBox1.Controls.Add(searchValueLabel);
             groupBox1.Controls.Add(label6);
             groupBox1.Controls.Add(searchButton);
             groupBox1.Controls.Add(searchTextBox);
@@ -271,7 +271,7 @@
         private TextBox sentenceTextBox;
         private ComboBox statusTypeComboBox;
         private Label label6;
-        private Label searchDataLabel;
+        private Label searchValueLabel;
         private GroupBox groupBox1;
         private ComboBox searchComboBox;
         private Label label7;

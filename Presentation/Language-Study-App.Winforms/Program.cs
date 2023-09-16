@@ -42,8 +42,8 @@ static class Program
                 services.AddScoped<AddCommand>();
                 services.AddScoped<UpdateCommand>();
                 services.AddScoped<GetByIdQuery>();
-                services.AddScoped<GetByWordQuery>();
-                services.AddScoped<GetByStatusQuery>();
+                services.AddScoped<GetByQuery>();
+                services.AddScoped<GetWhereQuery>();
                 services.AddScoped<HomePage>();
             });
     }

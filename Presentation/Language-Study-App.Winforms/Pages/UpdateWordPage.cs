@@ -21,8 +21,8 @@ namespace Language_Study_App.Winforms.Pages
     public partial class UpdateWordPage : Form
     {
         private readonly UpdateCommand _updateCommand;
-        private readonly GetByWordQuery _getByWordQuery;
-        public UpdateWordPage(UpdateCommand updateCommand, GetByWordQuery getByWordQuery)
+        private readonly GetByQuery _getByWordQuery;
+        public UpdateWordPage(UpdateCommand updateCommand, GetByQuery getByWordQuery)
         {
             InitializeComponent();
             GetStateTypes();
@@ -35,16 +35,23 @@ namespace Language_Study_App.Winforms.Pages
         private async void searchButton_Click(object sender, EventArgs e)
         {
             List<BaseEntitiy> search = await UpdateSearch<BaseEntitiy>();
-            foreach (var item in search)
+            if (search != null)
             {
-                MessageBox.Show(item.TurkishMean);
+                foreach (var item in search)
+                {
+                    searchValueLabel.Text = $"ID:{item.Id} - Word: ";
+                    idValueLabel.Text = item.Id.ToString();
+                }
             }
+
+
+
         }
         private async void updateWordPageButton_Click(object sender, EventArgs e)
         {
             if (IsEmptyUpdateItems())
             {
-                if (await UpdateAsync(11))
+                if (await UpdateAsync(Convert.ToInt32(idValueLabel.Text)))
                 {
                     MessageBox.Show("Done");
                 }
@@ -160,26 +167,30 @@ namespace Language_Study_App.Winforms.Pages
             if (type == "Word")
             {
                 Word word = await _getByWordQuery.GetByWord<Word>(searchTextBox.Text);
-                entite.Add((T)Convert.ChangeType(word,typeof(Word)));
+                if (word != null)
+                    entite.Add((T)Convert.ChangeType(word, typeof(Word)));
             }
-            else if(type=="Translate")
+            else if (type == "Translate")
             {
                 Translate translate = await _getByWordQuery.GetByWord<Translate>(searchTextBox.Text);
-                entite.Add((T)Convert.ChangeType(translate, typeof(Translate)));
+                if (translate != null)
+                    entite.Add((T)Convert.ChangeType(translate, typeof(Translate)));
             }
             else if (type == "PV")
             {
                 PV pv = await _getByWordQuery.GetByWord<PV>(searchButton.Text);
-                entite.Add((T)Convert.ChangeType(pv,typeof(PV)));
+                if (pv != null)
+                    entite.Add((T)Convert.ChangeType(pv, typeof(PV)));
             }
             else if (type == "AllEntitie")
             {
                 AllEntitie allEntitie = await _getByWordQuery.GetByWord<AllEntitie>(searchButton.Text);
-                entite.Add((T)Convert.ChangeType(allEntitie, typeof(AllEntitie)));
+                if (allEntitie != null)
+                    entite.Add((T)Convert.ChangeType(allEntitie, typeof(AllEntitie)));
             }
             else
             {
-                return entite;
+                return null;
             }
             return entite;
         }

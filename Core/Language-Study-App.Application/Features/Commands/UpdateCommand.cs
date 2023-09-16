@@ -17,21 +17,23 @@ namespace Language_Study_App.Application.Features.Commands
         private readonly IWordWriteRepository _wordWriteRepository;
         private readonly ITranslateWriteRepository _translateWriteRepository;
         private readonly IPVWriteRepository _pvWriteRepository;
-        private readonly GetByIdQuery _getByIdQuery;
+        //private readonly GetByIdQuery _getByIdQuery;
+        private readonly GetByQuery _getByQuery;
 
-        public UpdateCommand(IPVWriteRepository pvWriteRepository, ITranslateWriteRepository translateWriteRepository, IWordWriteRepository wordWriteRepository, IAllEntiteWriteRepository allEntiteWriteRepository, GetByIdQuery getByIdQuery)
+        public UpdateCommand(IPVWriteRepository pvWriteRepository, ITranslateWriteRepository translateWriteRepository, IWordWriteRepository wordWriteRepository, IAllEntiteWriteRepository allEntiteWriteRepository,/* GetByIdQuery getByIdQuery*/GetByQuery getByQuery)
         {
             _pvWriteRepository = pvWriteRepository;
             _translateWriteRepository = translateWriteRepository;
             _wordWriteRepository = wordWriteRepository;
             _allEntiteWriteRepository = allEntiteWriteRepository;
-            _getByIdQuery = getByIdQuery;
+            _getByQuery = getByQuery;
+            //_getByIdQuery = getByIdQuery;
         }
-       public async Task<bool> Update<T> (int id, T entity) where T : BaseEntitiy
+        public async Task<bool> Update<T> (int id, T entity) where T : BaseEntitiy
        {
             if (entity is Word word)
             {
-                var data = await _getByIdQuery.GetById<Word>(id);
+                var data = await _getByQuery.GetById<Word>(id);
                 data.TurkishMean = word.TurkishMean;
                 data.EnglishMean = word.EnglishMean;
                 data.EnglishWord = word.EnglishWord;
@@ -41,7 +43,7 @@ namespace Language_Study_App.Application.Features.Commands
             }
             else if (entity is Translate translate)
             {
-                var data = await _getByIdQuery.GetById<Translate>(id);
+                var data = await _getByQuery.GetById<Translate>(id);
                 data.TurkishMean = translate.TurkishMean;
                 data.EnglishMean = translate.EnglishMean;
                 data.EnglishTranslate = translate.EnglishTranslate;
@@ -51,7 +53,7 @@ namespace Language_Study_App.Application.Features.Commands
             }
             else if (entity is PV pv)
             {
-                var data = await _getByIdQuery.GetById<PV>(id);
+                var data = await _getByQuery.GetById<PV>(id);
                 data.TurkishMean = pv.TurkishMean;
                 data.EnglishMean = pv.EnglishMean;
                 data.EnglishPV = pv.EnglishPV;
@@ -61,7 +63,7 @@ namespace Language_Study_App.Application.Features.Commands
             }
             else if (entity is AllEntitie allEntitie)
             {
-                var data = await _getByIdQuery.GetById<AllEntitie>(id);
+                var data = await _getByQuery.GetById<AllEntitie>(id);
                 data.TurkishMean = allEntitie.TurkishMean;
                 data.EnglishMean = allEntitie.EnglishMean;
                 data.EnglishAllEntite = allEntitie.EnglishAllEntite;

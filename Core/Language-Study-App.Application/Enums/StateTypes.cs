@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Language_Study_App.Domain.Enums
+namespace Language_Study_App.Application.Enums
 {
     public enum StateTypes
     {
         Success = 1,
-        Flexible = 2,
-        Unsuccess = 3
+        Flexible,
+        Unsuccess
     }
 }

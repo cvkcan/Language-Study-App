@@ -1,4 +1,6 @@
-﻿using Language_Study_App.Application.Features.Commands;
+﻿using Accessibility;
+using Language_Study_App.Application.Features.Commands;
+using Language_Study_App.Application.Features.Queries;
 using Language_Study_App.Winforms.Pages;
 using System;
 using System.Collections.Generic;
@@ -15,10 +17,14 @@ namespace Language_Study_App.Winforms
     public partial class HomePage : Form
     {
         private readonly AddCommand _addCommand;
-        public HomePage(AddCommand addCommand)
+        private readonly UpdateCommand _updateCommand;
+        private readonly GetByWordQuery _getByWordQuery;
+        public HomePage(AddCommand addCommand, UpdateCommand updateCommand, GetByWordQuery getByWordQuery)
         {
             InitializeComponent();
             _addCommand = addCommand;
+            _updateCommand = updateCommand;
+            _getByWordQuery = getByWordQuery;
         }
 
         private void getWordButton_Click(object sender, EventArgs e)
@@ -35,7 +41,7 @@ namespace Language_Study_App.Winforms
 
         private void updateWordButton_Click(object sender, EventArgs e)
         {
-            UpdateWordPage updateWordPage = new();
+            UpdateWordPage updateWordPage = new(_updateCommand,_getByWordQuery);
             updateWordPage.ShowDialog();
         }
     }

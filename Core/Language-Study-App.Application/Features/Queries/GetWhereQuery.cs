@@ -109,26 +109,53 @@ namespace Language_Study_App.Application.Features.Queries
             }
             return (List<T>)datas;
         }
-        public List<T> GetByEnglishWord<T>(string value) where T : BaseEntitiy
+        //public List<T> GetByEnglishWord<T>(string value) where T : BaseEntitiy
+        //{
+        //    object datas = null;
+        //    if (typeof(T) == typeof(Word))
+        //    {
+        //        datas = _wordReadRepository.GetWhere(s => s.EnglishWord.Contains(value)).ToList();
+        //    }
+        //    else if (typeof(T) == typeof(Translate))
+        //    {
+        //        datas = _translateReadRepository.GetWhere(s => s.EnglishTranslate.Contains(value)).ToList();
+        //    }
+        //    else if (typeof(T) == typeof(PV))
+        //    {
+        //        datas = _pvReadRepository.GetWhere(s => s.EnglishPV.Contains(value)).ToList();
+        //    }
+        //    else if (typeof(T) == typeof(AllEntitie))
+        //    {
+        //        datas = _allEntitieReadRepository.GetWhere(s => s.EnglishAllEntite.Contains(value)).ToList();
+        //    }
+        //    return (List<T>)datas;
+        //}
+        public List<BaseEntitiy> GetByEnglishWord(Type entityType, string value)
         {
-            object datas = null;
-            if (typeof(T) == typeof(Word))
+            List<BaseEntitiy> result = new List<BaseEntitiy>();
+
+            if (entityType == typeof(Word))
             {
-                datas = _wordReadRepository.GetWhere(s => s.EnglishWord.Contains(value)).ToList();
+                List<Word> words = _wordReadRepository.GetWhere(s => s.EnglishWord.Contains(value)).ToList();
+                result.AddRange(words.Cast<BaseEntitiy>());
             }
-            else if (typeof(T) == typeof(Translate))
+            else if (entityType == typeof(Translate))
             {
-                datas = _translateReadRepository.GetWhere(s => s.EnglishTranslate.Contains(value)).ToList();
+                List<Translate> translates = _translateReadRepository.GetWhere(s => s.EnglishTranslate.Contains(value)).ToList();
+                result.AddRange(translates.Cast<BaseEntitiy>());
             }
-            else if (typeof(T) == typeof(PV))
+            else if (entityType == typeof(PV))
             {
-                datas = _pvReadRepository.GetWhere(s => s.EnglishPV.Contains(value)).ToList();
+                List<PV> pvs = _pvReadRepository.GetWhere(s => s.EnglishPV.Contains(value)).ToList();
+                result.AddRange(pvs.Cast<BaseEntitiy>());
             }
-            else if (typeof(T) == typeof(AllEntitie))
+            else if (entityType == typeof(AllEntitie))
             {
-                datas = _allEntitieReadRepository.GetWhere(s => s.EnglishAllEntite.Contains(value)).ToList();
+                List<AllEntitie> allEntities = _allEntitieReadRepository.GetWhere(s => s.EnglishAllEntite.Contains(value)).ToList();
+                result.AddRange(allEntities.Cast<BaseEntitiy>());
             }
-            return (List<T>)datas;
+
+            return result;
         }
 
 

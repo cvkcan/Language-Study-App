@@ -35,6 +35,7 @@
             getEnglishTextBox = new TextBox();
             getTurkishTextBox = new TextBox();
             getSentenceTextBox = new TextBox();
+            entitieTypesComboBox = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -60,10 +61,11 @@
             // stateeTypeComboBox
             // 
             stateeTypeComboBox.FormattingEnabled = true;
-            stateeTypeComboBox.Location = new Point(587, 766);
+            stateeTypeComboBox.Location = new Point(1093, 756);
             stateeTypeComboBox.Name = "stateeTypeComboBox";
             stateeTypeComboBox.Size = new Size(258, 23);
             stateeTypeComboBox.TabIndex = 2;
+            stateeTypeComboBox.SelectedIndexChanged += stateeTypeComboBox_SelectedIndexChanged;
             // 
             // getWordTextBox
             // 
@@ -75,7 +77,7 @@
             // 
             // getEnglishTextBox
             // 
-            getEnglishTextBox.Location = new Point(1093, 569);
+            getEnglishTextBox.Location = new Point(1093, 543);
             getEnglishTextBox.Name = "getEnglishTextBox";
             getEnglishTextBox.Size = new Size(253, 23);
             getEnglishTextBox.TabIndex = 4;
@@ -83,7 +85,7 @@
             // 
             // getTurkishTextBox
             // 
-            getTurkishTextBox.Location = new Point(1093, 666);
+            getTurkishTextBox.Location = new Point(1093, 605);
             getTurkishTextBox.Name = "getTurkishTextBox";
             getTurkishTextBox.Size = new Size(253, 23);
             getTurkishTextBox.TabIndex = 5;
@@ -91,17 +93,26 @@
             // 
             // getSentenceTextBox
             // 
-            getSentenceTextBox.Location = new Point(1093, 766);
+            getSentenceTextBox.Location = new Point(1093, 682);
             getSentenceTextBox.Name = "getSentenceTextBox";
             getSentenceTextBox.Size = new Size(311, 23);
             getSentenceTextBox.TabIndex = 6;
             getSentenceTextBox.KeyPress += getSentenceTextBox_KeyPress;
+            // 
+            // entitieTypesComboBox
+            // 
+            entitieTypesComboBox.FormattingEnabled = true;
+            entitieTypesComboBox.Location = new Point(543, 471);
+            entitieTypesComboBox.Name = "entitieTypesComboBox";
+            entitieTypesComboBox.Size = new Size(333, 23);
+            entitieTypesComboBox.TabIndex = 7;
             // 
             // GetWordPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1438, 823);
+            Controls.Add(entitieTypesComboBox);
             Controls.Add(getSentenceTextBox);
             Controls.Add(getTurkishTextBox);
             Controls.Add(getEnglishTextBox);
@@ -125,5 +136,6 @@
         private TextBox getEnglishTextBox;
         private TextBox getTurkishTextBox;
         private TextBox getSentenceTextBox;
+        private ComboBox entitieTypesComboBox;
     }
 }

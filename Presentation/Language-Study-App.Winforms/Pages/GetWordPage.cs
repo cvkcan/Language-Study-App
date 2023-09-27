@@ -33,7 +33,7 @@ namespace Language_Study_App.Winforms.Pages
 
         private void getWordButton_Click(object sender, EventArgs e)
         {
-            GetWords();
+            GetWord();
         }
 
         private void getWordTextBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -138,7 +138,7 @@ namespace Language_Study_App.Winforms.Pages
             MessageBox.Show("Arama kritlerlerini giriniz!");
         }
 
-        private void GetWords()
+        private void GetWord()
         {
             Enum.TryParse(stateeTypeComboBox.SelectedItem.ToString(), out Language_Study_App.Domain.Enums.StateTypes result);
             var entityType = GetEntities();

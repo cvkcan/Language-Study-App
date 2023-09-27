@@ -35,6 +35,7 @@
             // 
             // getWordButton
             // 
+            getWordButton.Font = new Font("Cooper Black", 12F, FontStyle.Regular, GraphicsUnit.Point);
             getWordButton.Location = new Point(261, 33);
             getWordButton.Name = "getWordButton";
             getWordButton.Size = new Size(284, 107);
@@ -45,7 +46,8 @@
             // 
             // addWordButton
             // 
-            addWordButton.Location = new Point(261, 164);
+            addWordButton.Font = new Font("Cooper Black", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            addWordButton.Location = new Point(261, 156);
             addWordButton.Name = "addWordButton";
             addWordButton.Size = new Size(284, 107);
             addWordButton.TabIndex = 1;
@@ -55,7 +57,8 @@
             // 
             // updateWordButton
             // 
-            updateWordButton.Location = new Point(261, 289);
+            updateWordButton.Font = new Font("Cooper Black", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            updateWordButton.Location = new Point(261, 287);
             updateWordButton.Name = "updateWordButton";
             updateWordButton.Size = new Size(284, 107);
             updateWordButton.TabIndex = 2;
@@ -71,6 +74,8 @@
             Controls.Add(updateWordButton);
             Controls.Add(addWordButton);
             Controls.Add(getWordButton);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "HomePage";
             Text = "HomePage";
             ResumeLayout(false);

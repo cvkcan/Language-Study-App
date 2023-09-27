@@ -45,7 +45,8 @@
             // 
             // addWordPageButton
             // 
-            addWordPageButton.Location = new Point(564, 380);
+            addWordPageButton.Font = new Font("Cooper Black", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            addWordPageButton.Location = new Point(565, 441);
             addWordPageButton.Name = "addWordPageButton";
             addWordPageButton.Size = new Size(144, 61);
             addWordPageButton.TabIndex = 0;
@@ -56,9 +57,10 @@
             // typeWordCheckBox
             // 
             typeWordCheckBox.AutoSize = true;
+            typeWordCheckBox.Font = new Font("Cooper Black", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
             typeWordCheckBox.Location = new Point(565, 65);
             typeWordCheckBox.Name = "typeWordCheckBox";
-            typeWordCheckBox.Size = new Size(82, 19);
+            typeWordCheckBox.Size = new Size(135, 25);
             typeWordCheckBox.TabIndex = 1;
             typeWordCheckBox.Text = "Type Word";
             typeWordCheckBox.UseVisualStyleBackColor = true;
@@ -67,9 +69,10 @@
             // typeTranslateCheckBox
             // 
             typeTranslateCheckBox.AutoSize = true;
+            typeTranslateCheckBox.Font = new Font("Cooper Black", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
             typeTranslateCheckBox.Location = new Point(565, 128);
             typeTranslateCheckBox.Name = "typeTranslateCheckBox";
-            typeTranslateCheckBox.Size = new Size(99, 19);
+            typeTranslateCheckBox.Size = new Size(175, 25);
             typeTranslateCheckBox.TabIndex = 2;
             typeTranslateCheckBox.Text = "Type Translate";
             typeTranslateCheckBox.UseVisualStyleBackColor = true;
@@ -77,11 +80,13 @@
             // 
             // typeAllEntitieCheckBox
             // 
+            typeAllEntitieCheckBox.Visible = false;
             typeAllEntitieCheckBox.AutoSize = true;
             typeAllEntitieCheckBox.Enabled = false;
+            typeAllEntitieCheckBox.Font = new Font("Cooper Black", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
             typeAllEntitieCheckBox.Location = new Point(564, 261);
             typeAllEntitieCheckBox.Name = "typeAllEntitieCheckBox";
-            typeAllEntitieCheckBox.Size = new Size(100, 19);
+            typeAllEntitieCheckBox.Size = new Size(180, 25);
             typeAllEntitieCheckBox.TabIndex = 4;
             typeAllEntitieCheckBox.Text = "Type AllEntitie";
             typeAllEntitieCheckBox.UseVisualStyleBackColor = true;
@@ -89,9 +94,10 @@
             // typePVCheckbox
             // 
             typePVCheckbox.AutoSize = true;
+            typePVCheckbox.Font = new Font("Cooper Black", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
             typePVCheckbox.Location = new Point(564, 192);
             typePVCheckbox.Name = "typePVCheckbox";
-            typePVCheckbox.Size = new Size(67, 19);
+            typePVCheckbox.Size = new Size(110, 25);
             typePVCheckbox.TabIndex = 5;
             typePVCheckbox.Text = "Type PV";
             typePVCheckbox.UseVisualStyleBackColor = true;
@@ -100,36 +106,40 @@
             // englishWordLabel
             // 
             englishWordLabel.AutoSize = true;
-            englishWordLabel.Location = new Point(53, 29);
+            englishWordLabel.Font = new Font("Cooper Black", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            englishWordLabel.Location = new Point(52, 41);
             englishWordLabel.Name = "englishWordLabel";
-            englishWordLabel.Size = new Size(77, 15);
+            englishWordLabel.Size = new Size(141, 21);
             englishWordLabel.TabIndex = 6;
             englishWordLabel.Text = "English Word";
             // 
             // englishMeanLabel
             // 
             englishMeanLabel.AutoSize = true;
-            englishMeanLabel.Location = new Point(53, 115);
+            englishMeanLabel.Font = new Font("Cooper Black", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            englishMeanLabel.Location = new Point(52, 128);
             englishMeanLabel.Name = "englishMeanLabel";
-            englishMeanLabel.Size = new Size(78, 15);
+            englishMeanLabel.Size = new Size(139, 21);
             englishMeanLabel.TabIndex = 7;
             englishMeanLabel.Text = "English Mean";
             // 
             // turkishMeanLabel
             // 
             turkishMeanLabel.AutoSize = true;
-            turkishMeanLabel.Location = new Point(52, 286);
+            turkishMeanLabel.Font = new Font("Cooper Black", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            turkishMeanLabel.Location = new Point(52, 306);
             turkishMeanLabel.Name = "turkishMeanLabel";
-            turkishMeanLabel.Size = new Size(78, 15);
+            turkishMeanLabel.Size = new Size(145, 21);
             turkishMeanLabel.TabIndex = 8;
             turkishMeanLabel.Text = "Turkish Mean";
             // 
             // sentenceLabel
             // 
             sentenceLabel.AutoSize = true;
-            sentenceLabel.Location = new Point(53, 403);
+            sentenceLabel.Font = new Font("Cooper Black", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            sentenceLabel.Location = new Point(52, 410);
             sentenceLabel.Name = "sentenceLabel";
-            sentenceLabel.Size = new Size(55, 15);
+            sentenceLabel.Size = new Size(97, 21);
             sentenceLabel.TabIndex = 9;
             sentenceLabel.Text = "Sentence";
             // 
@@ -157,7 +167,7 @@
             // 
             // sentenceTextBox
             // 
-            sentenceTextBox.Location = new Point(53, 452);
+            sentenceTextBox.Location = new Point(53, 441);
             sentenceTextBox.Multiline = true;
             sentenceTextBox.Name = "sentenceTextBox";
             sentenceTextBox.Size = new Size(428, 173);
@@ -181,6 +191,8 @@
             Controls.Add(typeTranslateCheckBox);
             Controls.Add(typeWordCheckBox);
             Controls.Add(addWordPageButton);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "AddWordPage";
             Text = "AddWordPage";
             ResumeLayout(false);

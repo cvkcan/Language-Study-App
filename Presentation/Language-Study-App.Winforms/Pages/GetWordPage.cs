@@ -2,7 +2,10 @@
 using Language_Study_App.Application.Features.Queries;
 using Language_Study_App.Domain.Entities;
 using Language_Study_App.Domain.Entities.Common;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.EntityFrameworkCore.Query.Internal;
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -27,116 +30,10 @@ namespace Language_Study_App.Winforms.Pages
             _getByStatusQuery = getByStatusQuery;
         }
         #region Event Area
-        //private void getWordButton_Click(object sender, EventArgs e)
-        //{
-        //    Enum.TryParse(entitieTypesComboBox.SelectedItem.ToString(), out EntiteTypes entitie);
-        //    Enum.TryParse(stateeTypeComboBox.SelectedItem.ToString(), out StateTypes result);
-        //    if (isUsed == "EnglishMean")
-        //    {
-        //        var ss = _getByStatusQuery.GetByEnglishWord<entitie>(getEnglishTextBox.Text);
-        //        dataGridView1.DataSource = ss;
-        //    }
-        //    else if (isUsed == "Translate")
-        //    {
-        //        var ss = _getByStatusQuery.GetByEnglishWord<entitie>(getTurkishTextBox.Text);
-        //        dataGridView1.DataSource = ss;
-        //    }
-        //    else if (isUsed == "PV")
-        //    {
-        //        var ss = _getByStatusQuery.GetByEnglishWord<entitie>(getSentenceTextBox.Text);
-        //        dataGridView1.DataSource = ss;
-        //    }
-        //    else if (isUsed == "")
-        //    {
-        //        var ss = _getByStatusQuery.GetByEnglishWord<entitie>(getEnglishTextBox.Text);
-        //        dataGridView1.DataSource = ss;
-        //    }
-        //    else
-        //    {
-        //        dataGridView1.DataSource = null;
-        //    }
-        //}
-        ////private void getWordButton_Click(object sender, EventArgs e)
-        ////{
-        ////    if (entitieTypesComboBox.SelectedItem is EntiteTypes entitie || stateeTypeComboBox.SelectedItem is StateTypes result)
-        ////    {
-        ////        if (isUsed == "EnglishMean")
-        ////        {
-        ////            var ss = _getByStatusQuery.GetByEnglishWord<Word>(getEnglishTextBox.Text);
-        ////            dataGridView1.DataSource = ss;
-        ////        }
-        ////        else if (isUsed == "Translate")
-        ////        {
-        ////            var ss = _getByStatusQuery.GetByEnglishWord<Word>(getTurkishTextBox.Text);
-        ////            dataGridView1.DataSource = ss;
-        ////        }
-        ////        else if (isUsed == "PV")
-        ////        {
-        ////            var ss = _getByStatusQuery.GetByEnglishWord<Word>(getSentenceTextBox.Text);
-        ////            dataGridView1.DataSource = ss;
-        ////        }
-        ////        else if (isUsed == "")
-        ////        {
-        ////            var ss = _getByStatusQuery.GetByEnglishWord<Word>(getEnglishTextBox.Text);
-        ////            dataGridView1.DataSource = ss;
-        ////        }
-        ////        else
-        ////        {
-        ////            dataGridView1.DataSource = null;
-        ////        }
-        ////    }
-        ////}
-
 
         private void getWordButton_Click(object sender, EventArgs e)
         {
-            Enum.TryParse(entitieTypesComboBox.SelectedItem.ToString(), out EntiteTypes entitie);
-            Enum.TryParse(stateeTypeComboBox.SelectedItem.ToString(), out StateTypes result);
-
-            // Öncelikle generic türü belirleyin
-            Type entityType = null;
-            if (entitie == EntiteTypes.Word)
-            {
-                entityType = typeof(Word);
-            }
-            else if (entitie == EntiteTypes.Translate)
-            {
-                entityType = typeof(Translate);
-            }
-            else if (entitie == EntiteTypes.PV)
-            {
-                entityType = typeof(PV);
-            }
-            else if (entitie == EntiteTypes.AllEntitie)
-            {
-                entityType = typeof(AllEntitie);
-            }
-
-            if (isUsed == "Word")
-            {
-                // Generic türü kullanarak GetByEnglishWord'u çağırın
-                var ss = _getByStatusQuery.GetByEnglishWord(entityType, getWordTextBox.Text);
-                dataGridView1.DataSource = ss;
-            }
-            else if (isUsed == "Translate")
-            {
-                var ss = _getByStatusQuery.GetByEnglishWord(entityType, getTurkishTextBox.Text);
-                dataGridView1.DataSource = ss;
-            }
-            else if (isUsed == "PV")
-            {
-                var ss = _getByStatusQuery.GetByEnglishWord(entityType, getSentenceTextBox.Text);
-                dataGridView1.DataSource = ss;
-            }
-            else if (isUsed == "")
-            {
-                var ss = _getByStatusQuery.GetByEnglishWord(entityType, getEnglishTextBox.Text);
-                dataGridView1.DataSource = ss;
-            }
-            else
-            {
-                dataGridView1.DataSource = null;
-            }
+            zimbirti();
         }
 
         private void getWordTextBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -167,18 +64,9 @@ namespace Language_Study_App.Winforms.Pages
 
         #region Func Area
 
-        private EntiteTypes ReadCombobox()
-        {
-            Enum.TryParse(entitieTypesComboBox.SelectedItem.ToString(), out EntiteTypes entitie);
-            return entitie;
-        }
-
         private void GetEntitieTypes()
         {
-            foreach (var item in Enum.GetValues(typeof(EntiteTypes)))
-            {
-                entitieTypesComboBox.Items.Add(item);
-            }
+            entitieTypesComboBox.DataSource = Enum.GetValues(typeof(EntiteTypes));
         }
 
         private void GetStateType()
@@ -242,6 +130,169 @@ namespace Language_Study_App.Winforms.Pages
                 stateeTypeComboBox.Enabled = true;
             }
             return isUsed;
+        }
+
+        private void dgwNull()
+        {
+            dataGridView1.DataSource = null;
+            MessageBox.Show("Arama kritlerlerini giriniz!");
+        }
+
+        private void zimbirti()
+        {
+            Enum.TryParse(stateeTypeComboBox.SelectedItem.ToString(), out Language_Study_App.Domain.Enums.StateTypes result);
+            var entityType = zort();
+            if (entityType == typeof(Word))
+            {
+                if (isUsed == "Word")
+                {
+                    var ss = _getByStatusQuery.GetByEnglishWord<Word>(entityType, getWordTextBox.Text);
+                    dataGridView1.DataSource = ss;
+                }
+                else if (isUsed == "TurkishMean")
+                {
+                    var ss = _getByStatusQuery.GetByTurkishMean<Word>(entityType, getTurkishTextBox.Text);
+                    dataGridView1.DataSource = ss;
+                }
+                else if (isUsed == "Sentence")
+                {
+                    var ss = _getByStatusQuery.GetBySentece<Word>(entityType, getSentenceTextBox.Text);
+                    dataGridView1.DataSource = ss;
+                }
+                else if (isUsed == "StateTypes")
+                {
+                    var ss = _getByStatusQuery.GetByStatus<Word>(entityType, result);
+                    dataGridView1.DataSource = ss;
+                }
+                else if (isUsed == "EnglishMean")
+                {
+                    var ss = _getByStatusQuery.GetByEnglishMean<Word>(entityType, getEnglishTextBox.Text);
+                    dataGridView1.DataSource = ss;
+                }
+                else
+                {
+                    dgwNull();
+                }
+            }
+            else if (entityType == typeof(Translate))
+            {
+                if (isUsed == "Word")
+                {
+                    var ss = _getByStatusQuery.GetByEnglishWord<Translate>(entityType, getWordTextBox.Text);
+                    dataGridView1.DataSource = ss;
+                }
+                else if (isUsed == "TurkishMean")
+                {
+                    var ss = _getByStatusQuery.GetByTurkishMean<Translate>(entityType, getTurkishTextBox.Text);
+                    dataGridView1.DataSource = ss;
+                }
+                else if (isUsed == "Sentence")
+                {
+                    var ss = _getByStatusQuery.GetBySentece<Translate>(entityType, getSentenceTextBox.Text);
+                    dataGridView1.DataSource = ss;
+                }
+                else if (isUsed == "StateTypes")
+                {
+                    var ss = _getByStatusQuery.GetByStatus<Translate>(entityType, result);
+                    dataGridView1.DataSource = ss;
+                }
+                else if (isUsed == "EnglishMean")
+                {
+                    var ss = _getByStatusQuery.GetByEnglishMean<Translate>(entityType, getEnglishTextBox.Text);
+                    dataGridView1.DataSource = ss;
+                }
+                else
+                {
+                    dgwNull();
+                }
+            }
+            else if (entityType == typeof(PV))
+            {
+                if (isUsed == "Word")
+                {
+                    var ss = _getByStatusQuery.GetByEnglishWord<PV>(entityType, getWordTextBox.Text);
+                    dataGridView1.DataSource = ss;
+                }
+                else if (isUsed == "TurkishMean")
+                {
+                    var ss = _getByStatusQuery.GetByTurkishMean<PV>(entityType, getTurkishTextBox.Text);
+                    dataGridView1.DataSource = ss;
+                }
+                else if (isUsed == "Sentence")
+                {
+                    var ss = _getByStatusQuery.GetBySentece<PV>(entityType, getSentenceTextBox.Text);
+                    dataGridView1.DataSource = ss;
+                }
+                else if (isUsed == "StateTypes")
+                {
+                    var ss = _getByStatusQuery.GetByStatus<PV>(entityType, result);
+                    dataGridView1.DataSource = ss;
+                }
+                else if (isUsed == "EnglishMean")
+                {
+                    var ss = _getByStatusQuery.GetByEnglishMean<PV>(entityType, getEnglishTextBox.Text);
+                    dataGridView1.DataSource = ss;
+                }
+                else
+                {
+                    dgwNull();
+                }
+            }
+            else if (entityType == typeof(AllEntitie))
+            {
+                if (isUsed == "Word")
+                {
+                    var ss = _getByStatusQuery.GetByEnglishWord<AllEntitie>(entityType, getWordTextBox.Text);
+                    dataGridView1.DataSource = ss;
+                }
+                else if (isUsed == "TurkishMean")
+                {
+                    var ss = _getByStatusQuery.GetByTurkishMean<AllEntitie>(entityType, getTurkishTextBox.Text);
+                    dataGridView1.DataSource = ss;
+                }
+                else if (isUsed == "Sentence")
+                {
+                    var ss = _getByStatusQuery.GetBySentece<AllEntitie>(entityType, getSentenceTextBox.Text);
+                    dataGridView1.DataSource = ss;
+                }
+                else if (isUsed == "StateTypes")
+                {
+                    var ss = _getByStatusQuery.GetByStatus<AllEntitie>(entityType, result);
+                    dataGridView1.DataSource = ss;
+                }
+                else if (isUsed == "EnglishMean")
+                {
+                    var ss = _getByStatusQuery.GetByEnglishMean<AllEntitie>(entityType, getEnglishTextBox.Text);
+                    dataGridView1.DataSource = ss;
+                }
+                else
+                {
+                    dgwNull();
+                }
+            }
+        }
+
+        private Type zort()
+        {
+            Enum.TryParse(entitieTypesComboBox.SelectedItem.ToString(), out EntiteTypes entitie);
+            Type entityType = null;
+            if (entitie == EntiteTypes.Word)
+            {
+                entityType = typeof(Word);
+            }
+            else if (entitie == EntiteTypes.Translate)
+            {
+                entityType = typeof(Translate);
+            }
+            else if (entitie == EntiteTypes.PV)
+            {
+                entityType = typeof(PV);
+            }
+            else if (entitie == EntiteTypes.AllEntitie)
+            {
+                entityType = typeof(AllEntitie);
+            }
+            return entityType;
         }
         #endregion
 

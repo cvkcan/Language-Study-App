@@ -43,7 +43,7 @@ namespace Language_Study_App.Winforms
 
         private void updateWordButton_Click(object sender, EventArgs e)
         {
-            UpdateWordPage updateWordPage = new(_updateCommand,_getByWordQuery);
+            UpdateWordPage updateWordPage = new(_updateCommand, _getByWordQuery);
             updateWordPage.ShowDialog();
         }
     }

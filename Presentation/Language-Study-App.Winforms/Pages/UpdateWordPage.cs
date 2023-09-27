@@ -25,8 +25,7 @@ namespace Language_Study_App.Winforms.Pages
         public UpdateWordPage(UpdateCommand updateCommand, GetByQuery getByWordQuery)
         {
             InitializeComponent();
-            GetStateTypes();
-            GetEntitieTypes();
+            GetComboboxs();
             _updateCommand = updateCommand;
             _getByWordQuery = getByWordQuery;
         }
@@ -35,17 +34,20 @@ namespace Language_Study_App.Winforms.Pages
         private async void searchButton_Click(object sender, EventArgs e)
         {
             List<BaseEntitiy> search = await UpdateSearch<BaseEntitiy>();
-            if (search != null)
+            if (search.Count>0)
             {
                 foreach (var item in search)
                 {
-                    searchValueLabel.Text = $"ID:{item.Id} - Word: ";
+                    searchValueLabel.Text = $"ID:{item.Id} - Word: {searchTextBox.Text} ";
                     idValueLabel.Text = item.Id.ToString();
+                    entitieTypeComboBox.SelectedItem = searchComboBox.SelectedItem;
                 }
             }
-
-
-
+            else
+            {
+                idValueLabel.Text = "ID:";
+                MessageBox.Show($"'{searchTextBox.Text}' ifadesi bulunamadı.");
+            }
         }
         private async void updateWordPageButton_Click(object sender, EventArgs e)
         {
@@ -53,34 +55,28 @@ namespace Language_Study_App.Winforms.Pages
             {
                 if (await UpdateAsync(Convert.ToInt32(idValueLabel.Text)))
                 {
-                    MessageBox.Show("Done");
+                    MessageBox.Show($"{idValueLabel.Text} id'li {searchTextBox.Text} kelime güncellendi");
                 }
                 else
                 {
-                    MessageBox.Show("Failed!!");
+                    MessageBox.Show("İşlem başarısız. Değiştirmek istediğiniz kelimeyi aradıktan sonra güncelleme işlemi yapabilirsiniz.");
                 }
             }
             else
             {
-                MessageBox.Show("Failed");
+                MessageBox.Show("Boş değerleri doldurunuz.");
             }
         }
         #endregion
 
         #region Func Area
-        private void GetStateTypes()
+        private void GetComboboxs()
         {
             statusTypeComboBox.DataSource = Enum.GetValues(typeof(StateTypes));
+            searchComboBox.DataSource = Enum.GetValues(typeof(EntiteTypes));
+            entitieTypeComboBox.DataSource = Enum.GetValues(typeof(EntiteTypes));
         }
 
-        private void GetEntitieTypes()
-        {
-            foreach (var item in Enum.GetValues(typeof(EntiteTypes)))
-            {
-                searchComboBox.Items.Add(item);
-                entitieTypeComboBox.Items.Add(item);
-            }
-        }
         private bool IsEmptySearchCombobox()
         {
             if (searchComboBox.SelectedIndex == -1)
@@ -91,7 +87,8 @@ namespace Language_Study_App.Winforms.Pages
 
         private bool IsEmptyUpdateItems()
         {
-            if (entitieTypeComboBox.SelectedIndex == -1 || statusTypeComboBox.SelectedIndex == -1 || string.IsNullOrEmpty(englishWordTextBox.Text) || string.IsNullOrEmpty(englishMeanTextBox.Text) || string.IsNullOrEmpty(turkishMeanTextBox.Text) || string.IsNullOrEmpty(sentenceTextBox.Text))
+            int idValue;
+            if (entitieTypeComboBox.SelectedIndex == -1 || statusTypeComboBox.SelectedIndex == -1 || string.IsNullOrEmpty(englishWordTextBox.Text) || string.IsNullOrEmpty(englishMeanTextBox.Text) || string.IsNullOrEmpty(turkishMeanTextBox.Text) || string.IsNullOrEmpty(sentenceTextBox.Text) || !int.TryParse(idValueLabel.Text, out idValue))
             {
                 return false;
             }
@@ -161,6 +158,7 @@ namespace Language_Study_App.Winforms.Pages
 
         private async Task<List<T>> UpdateSearch<T>() where T : BaseEntitiy
         {
+
             string type = searchComboBox.SelectedItem.ToString();
             List<T> entite = new List<T>();
 
@@ -178,13 +176,13 @@ namespace Language_Study_App.Winforms.Pages
             }
             else if (type == "PV")
             {
-                PV pv = await _getByWordQuery.GetByWord<PV>(searchButton.Text);
+                PV pv = await _getByWordQuery.GetByWord<PV>(searchTextBox.Text);
                 if (pv != null)
                     entite.Add((T)Convert.ChangeType(pv, typeof(PV)));
             }
             else if (type == "AllEntitie")
             {
-                AllEntitie allEntitie = await _getByWordQuery.GetByWord<AllEntitie>(searchButton.Text);
+                AllEntitie allEntitie = await _getByWordQuery.GetByWord<AllEntitie>(searchTextBox.Text);
                 if (allEntitie != null)
                     entite.Add((T)Convert.ChangeType(allEntitie, typeof(AllEntitie)));
             }

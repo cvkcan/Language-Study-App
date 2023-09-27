@@ -113,7 +113,7 @@ namespace Language_Study_App.Winforms.Pages
             if (typeWordCheckBox.Checked) entityType = typeof(Word);
             else if (typePVCheckbox.Checked) entityType = typeof(PV);
             else if (typeTranslateCheckBox.Checked) entityType = typeof(Translate);
-            else entityType=null;
+            else entityType = null;
             return entityType;
         }
         private void ClearField()

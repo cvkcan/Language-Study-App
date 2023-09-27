@@ -33,7 +33,7 @@ namespace Language_Study_App.Winforms.Pages
 
         private void getWordButton_Click(object sender, EventArgs e)
         {
-            zimbirti();
+            GetWords();
         }
 
         private void getWordTextBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -138,10 +138,10 @@ namespace Language_Study_App.Winforms.Pages
             MessageBox.Show("Arama kritlerlerini giriniz!");
         }
 
-        private void zimbirti()
+        private void GetWords()
         {
             Enum.TryParse(stateeTypeComboBox.SelectedItem.ToString(), out Language_Study_App.Domain.Enums.StateTypes result);
-            var entityType = zort();
+            var entityType = GetEntities();
             if (entityType == typeof(Word))
             {
                 if (isUsed == "Word")
@@ -272,7 +272,7 @@ namespace Language_Study_App.Winforms.Pages
             }
         }
 
-        private Type zort()
+        private Type GetEntities()
         {
             Enum.TryParse(entitieTypesComboBox.SelectedItem.ToString(), out EntiteTypes entitie);
             Type entityType = null;

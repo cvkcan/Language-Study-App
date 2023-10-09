@@ -41,6 +41,8 @@ static class Program
                 services.AddScoped<IPVWriteRepository, PVWriteRepository>();
                 services.AddScoped<AddCommand>();
                 services.AddScoped<UpdateCommand>();
+                services.AddScoped<GetCount>();
+                services.AddScoped<GetRandom>();
                 services.AddScoped<GetByIdQuery>();
                 services.AddScoped<GetByQuery>();
                 services.AddScoped<GetWhereQuery>();

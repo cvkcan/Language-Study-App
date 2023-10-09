@@ -14,7 +14,7 @@ namespace Language_Study_App.Persistence.Configurations
         {
             get 
             {
-                string jsonPath = @"C:\\Users\\CAN\\source\\repos\\Language-Study-App\\Infrastructure\\Language-Study-App.Persistence\\";
+                string jsonPath = @"C:\\Users\\safac\\Source\\Repos\\Language-Study-App\\Infrastructure\\Language-Study-App.Persistence\\";
                 ConfigurationManager configurationManager = new();
                 configurationManager.SetBasePath(jsonPath);
                 configurationManager.AddJsonFile("json1.json");

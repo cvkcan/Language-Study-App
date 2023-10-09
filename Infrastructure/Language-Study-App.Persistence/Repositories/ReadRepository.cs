@@ -28,6 +28,7 @@ namespace Language_Study_App.Persistence.Repositories
 
         public DbSet<T> Table { get => _context.Set<T>(); set => throw new NotImplementedException(); }
 
+  
         public async Task<T> GetByIdAsync(int id, bool tracking = true)
         {
             var query = Table.AsQueryable();
@@ -68,5 +69,15 @@ namespace Language_Study_App.Persistence.Repositories
                 query = query.AsNoTracking();
             return query.Where(method);
         }
+
+        public async Task<int> GetByCountId(bool tracking = true)
+        {
+            var query = Table.AsQueryable();
+            if (!tracking)
+                query = query.AsNoTracking();
+            int value1 = await query.CountAsync();
+            return  value1;
+        }
+
     }
 }

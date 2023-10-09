@@ -20,14 +20,18 @@ namespace Language_Study_App.Winforms.Pages
     public partial class GetWordPage : Form
     {
         private readonly GetWhereQuery _getByStatusQuery;
+        private readonly GetCount _getCount;
+        private readonly GetRandom _getRandom;
         string isUsed = "";
-        public GetWordPage(GetWhereQuery getByStatusQuery)
+        public GetWordPage(GetWhereQuery getByStatusQuery, GetCount getCount, GetRandom getRandom)
         {
             InitializeComponent();
             GetStateType();
             GetEntitieTypes();
             stateeTypeComboBox.SelectedItem = "---Disabled---";
             _getByStatusQuery = getByStatusQuery;
+            _getCount = getCount;
+            _getRandom = getRandom;
         }
         #region Event Area
 
@@ -63,6 +67,11 @@ namespace Language_Study_App.Winforms.Pages
         #endregion
 
         #region Func Area
+
+        private async Task GetRandomValue()
+        {
+            dataGridView1.DataSource = await _getRandom.GetRandomAsync<Word>(GetTableCount());
+        }
 
         private void GetEntitieTypes()
         {
@@ -294,6 +303,28 @@ namespace Language_Study_App.Winforms.Pages
             }
             return entityType;
         }
+
+        private async Task<int> GetTableCount()
+        {
+            var entityType = GetEntities();
+            if (entityType == typeof(Word))
+            {
+                return   await _getCount.GetByIdCount<Word>();
+            }
+            else if (entityType == typeof(Translate))
+            {
+                return  await _getCount.GetByIdCount<Translate>();
+            }
+            else if (entityType == typeof(PV))
+            {
+                return  await _getCount.GetByIdCount<PV>();
+            }
+            else
+            {
+                return  await _getCount.GetByIdCount<AllEntitie>();
+            }
+        }
+
         #endregion
 
 

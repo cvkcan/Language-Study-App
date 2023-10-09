@@ -12,6 +12,7 @@ namespace Language_Study_App.Application.Repositories
     {
         IQueryable<T> GettAll(bool tracking = false);
         IQueryable<T> GetWhere(Expression<Func<T, bool>> method, bool tracking = false);
+        Task<int> GetByCountId(bool tracking = true);
         Task<T> GetByIdAsync(int id, bool tracking = true);
         Task<T> GetByWordAsync(string word, bool tracking = true);
     }

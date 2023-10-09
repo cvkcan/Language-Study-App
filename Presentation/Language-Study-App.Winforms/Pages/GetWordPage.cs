@@ -325,6 +325,16 @@ namespace Language_Study_App.Winforms.Pages
             }
         }
 
+        private async Task asdsa()
+        {
+            var value = await GetTableCount();
+            if (value!=0)
+            {
+                Random random = new();
+                int randomValue = random.Next(1,value);
+            }
+        }
+
         #endregion
 
 

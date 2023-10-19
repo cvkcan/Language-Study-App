@@ -35,9 +35,10 @@ namespace Language_Study_App.Winforms.Pages
         }
         #region Event Area
 
-        private void getWordButton_Click(object sender, EventArgs e)
+        private async void getWordButton_Click(object sender, EventArgs e)
         {
-            GetWords();
+            //GetWords();
+            await GetRandomValue();
         }
 
         private void getWordTextBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -70,6 +71,8 @@ namespace Language_Study_App.Winforms.Pages
 
         private async Task GetRandomValue()
         {
+            //ILGILI HUCREYE VERI GELIYORSA DATAGRIDDE SORUN YOK DEVAM
+            //ONUN DISINDA CALISMIYORSA ASYNC YAPILANMASI INCELEMNECEK
             dataGridView1.DataSource = await _getRandom.GetRandomAsync<Word>(GetTableCount());
         }
 

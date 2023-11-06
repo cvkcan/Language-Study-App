@@ -1,19 +1,10 @@
 ﻿using Language_Study_App.Application.Repositories;
 using Language_Study_App.Domain.Entities;
 using Language_Study_App.Domain.Entities.Common;
-using Language_Study_App.Domain.Enums;
 using Language_Study_App.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Query.Internal;
-using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml;
 
 namespace Language_Study_App.Persistence.Repositories
 {

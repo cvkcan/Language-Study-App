@@ -2,12 +2,6 @@
 using Language_Study_App.Domain.Entities;
 using Language_Study_App.Domain.Entities.Common;
 using Language_Study_App.Domain.Enums;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Language_Study_App.Application.Features.Queries
 {

@@ -3,18 +3,6 @@ using Language_Study_App.Application.Features.Commands;
 using Language_Study_App.Application.Features.Queries;
 using Language_Study_App.Domain.Entities;
 using Language_Study_App.Domain.Entities.Common;
-using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
-using Microsoft.Identity.Client;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.DirectoryServices.ActiveDirectory;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Language_Study_App.Winforms.Pages
 {

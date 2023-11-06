@@ -42,13 +42,14 @@
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // getWordButton
             // 
             getWordButton.Font = new Font("Cooper Black", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            getWordButton.Location = new Point(967, 409);
+            getWordButton.Location = new Point(955, 355);
             getWordButton.Name = "getWordButton";
             getWordButton.Size = new Size(304, 110);
             getWordButton.TabIndex = 1;
@@ -177,11 +178,23 @@
             label1.TabIndex = 19;
             label1.Text = "English Word";
             // 
+            // button1
+            // 
+            button1.Font = new Font("Cooper Black", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            button1.Location = new Point(955, 493);
+            button1.Name = "button1";
+            button1.Size = new Size(304, 110);
+            button1.TabIndex = 24;
+            button1.Text = "Get Random Word";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // GetWordPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1438, 657);
+            Controls.Add(button1);
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label3);
@@ -220,5 +233,6 @@
         private Label label3;
         private Label label2;
         private Label label1;
+        private Button button1;
     }
 }

@@ -4,9 +4,7 @@ using Language_Study_App.Application.Repositories;
 using Language_Study_App.Persistence.Contexts;
 using Language_Study_App.Persistence.Repositories;
 using Language_Study_App.Winforms;
-using Language_Study_App.Winforms.Pages;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 

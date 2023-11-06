@@ -1,19 +1,6 @@
 ﻿using Language_Study_App.Application.Enums;
 using Language_Study_App.Application.Features.Queries;
 using Language_Study_App.Domain.Entities;
-using Language_Study_App.Domain.Entities.Common;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Microsoft.EntityFrameworkCore.Query.Internal;
-using System;
-using System.CodeDom;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Language_Study_App.Winforms.Pages
 {
@@ -35,10 +22,14 @@ namespace Language_Study_App.Winforms.Pages
         }
         #region Event Area
 
-        private async void getWordButton_Click(object sender, EventArgs e)
+        private void getWordButton_Click(object sender, EventArgs e)
         {
-            //GetWords();
-            await GetRandomValue();
+            GetWords();
+        }
+
+        private async void button1_Click(object sender, EventArgs e)
+        {
+            await GetRandomData();
         }
 
         private void getWordTextBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -69,11 +60,37 @@ namespace Language_Study_App.Winforms.Pages
 
         #region Func Area
 
-        private async Task GetRandomValue()
+        private async Task GetRandomData()
         {
-            //ILGILI HUCREYE VERI GELIYORSA DATAGRIDDE SORUN YOK DEVAM
-            //ONUN DISINDA CALISMIYORSA ASYNC YAPILANMASI INCELEMNECEK
-            dataGridView1.DataSource = await _getRandom.GetRandomAsync<Word>(GetTableCount());
+            var entitieType = GetEntities();
+            if (entitieType==typeof(Word))
+            {
+                List<Word> word = new();
+                var ss = await _getRandom.GetRandomAsync<Word>(GetRandomValue());
+                word.Add(ss);
+                dataGridView1.DataSource = word;
+            }
+            else if (entitieType==typeof(Translate))
+            {
+                List<Translate> translate = new();
+                var ss = await _getRandom.GetRandomAsync<Translate>(GetRandomValue());
+                translate.Add(ss);
+                dataGridView1.DataSource = translate;
+            }
+            else if (entitieType==typeof(PV))
+            {
+                List<PV> pV = new();
+                var ss = await _getRandom.GetRandomAsync<PV>(GetRandomValue());
+                pV.Add(ss);
+                dataGridView1.DataSource = pV;
+            }
+            else
+            {
+                List<AllEntitie> allEntitie = new();
+                var ss = await _getRandom.GetRandomAsync<AllEntitie>(GetRandomValue());
+                allEntitie.Add(ss);
+                dataGridView1.DataSource = allEntitie;
+            }
         }
 
         private void GetEntitieTypes()
@@ -312,35 +329,31 @@ namespace Language_Study_App.Winforms.Pages
             var entityType = GetEntities();
             if (entityType == typeof(Word))
             {
-                return   await _getCount.GetByIdCount<Word>();
+                return await _getCount.GetByIdCount<Word>();
             }
             else if (entityType == typeof(Translate))
             {
-                return  await _getCount.GetByIdCount<Translate>();
+                return await _getCount.GetByIdCount<Translate>();
             }
             else if (entityType == typeof(PV))
             {
-                return  await _getCount.GetByIdCount<PV>();
+                return await _getCount.GetByIdCount<PV>();
             }
             else
             {
-                return  await _getCount.GetByIdCount<AllEntitie>();
+                return await _getCount.GetByIdCount<AllEntitie>();
             }
         }
 
-        private async Task asdsa()
+        private async Task<int> GetRandomValue()
         {
             var value = await GetTableCount();
-            if (value!=0)
-            {
-                Random random = new();
-                int randomValue = random.Next(1,value);
-            }
+            Random random = new();
+            int randomValue = random.Next(1, value);
+            return randomValue;
         }
 
         #endregion
-
-
-
+       
     }
 }

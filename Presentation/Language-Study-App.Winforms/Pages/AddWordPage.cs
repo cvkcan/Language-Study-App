@@ -1,18 +1,5 @@
 ﻿using Language_Study_App.Application.Features.Commands;
 using Language_Study_App.Domain.Entities;
-using Language_Study_App.Domain.Entities.Common;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Xml.Serialization;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace Language_Study_App.Winforms.Pages
 {
